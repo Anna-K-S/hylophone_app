@@ -13,11 +13,11 @@ class XylophoneApp extends StatelessWidget {
     player.play();
   }
 
-  Expanded _buildKey({btnColor, noteNumber, noteName}) {
+  Expanded _buildKey({buttonColor, noteNumber, noteName}) {
     return Expanded(
         child: TextButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(btnColor),
+      style: TextButton.styleFrom(
+        backgroundColor: buttonColor
       ),
       onPressed: () {
         _playSound(noteNumber);
@@ -41,14 +41,20 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              _buildKey(btnColor: Colors.red, noteNumber: 1, noteName: 'C'),
-              _buildKey(btnColor: Colors.orange, noteNumber: 2, noteName: 'D'),
-              _buildKey(btnColor: Colors.yellow, noteNumber: 3, noteName: 'E'),
-              _buildKey(btnColor: Colors.green, noteNumber: 4, noteName: 'F'),
-              _buildKey(btnColor: Colors.blue, noteNumber: 5, noteName: 'G'),
-              _buildKey(btnColor: Colors.indigo, noteNumber: 6, noteName: 'A'),
+              _buildKey(buttonColor: Colors.red, noteNumber: 1, noteName: 'C'),
               _buildKey(
-                  btnColor: Colors.purple[900], noteNumber: 7, noteName: 'B'),
+                  buttonColor: Colors.orange, noteNumber: 2, noteName: 'D'),
+              _buildKey(
+                  buttonColor: Colors.yellow, noteNumber: 3, noteName: 'E'),
+              _buildKey(
+                  buttonColor: Colors.green, noteNumber: 4, noteName: 'F'),
+              _buildKey(buttonColor: Colors.blue, noteNumber: 5, noteName: 'G'),
+              _buildKey(
+                  buttonColor: Colors.indigo, noteNumber: 6, noteName: 'A'),
+              _buildKey(
+                  buttonColor: Colors.purple[900],
+                  noteNumber: 7,
+                  noteName: 'B'),
             ],
           ),
         ),
