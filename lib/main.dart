@@ -4,7 +4,10 @@ import 'package:audiofileplayer/audiofileplayer.dart';
 void main() => runApp(const XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-  const XylophoneApp({super.key});
+
+  const XylophoneApp({Key? key}) : super(key: key);
+
+ 
 
   void _playSound(int noteNumber) {
     final player = Audio.load('assets/note$noteNumber.wav');
@@ -25,8 +28,10 @@ class XylophoneApp extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-    ));
+    ),
+    );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +41,21 @@ class XylophoneApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _buildKey(buttonColor: Colors.red, noteNumber: 1, noteName: 'C'),
-              _buildKey(
+            children: const <Widget>[
+              XylophoneKey(
+                  buttonColor: Colors.red, noteNumber: 1, noteName: 'C'),
+              XylophoneKey(
                   buttonColor: Colors.orange, noteNumber: 2, noteName: 'D'),
-              _buildKey(
+              XylophoneKey(
                   buttonColor: Colors.yellow, noteNumber: 3, noteName: 'E'),
-              _buildKey(
+              XylophoneKey(
                   buttonColor: Colors.green, noteNumber: 4, noteName: 'F'),
-              _buildKey(buttonColor: Colors.blue, noteNumber: 5, noteName: 'G'),
-              _buildKey(
+              XylophoneKey(
+                  buttonColor: Colors.blue, noteNumber: 5, noteName: 'G'),
+              XylophoneKey(
                   buttonColor: Colors.indigo, noteNumber: 6, noteName: 'A'),
-              _buildKey(
-                  buttonColor: Colors.purple[900],
-                  noteNumber: 7,
-                  noteName: 'B'),
+              XylophoneKey(
+                  buttonColor: Colors.purple, noteNumber: 7, noteName: 'B'),
             ],
           ),
         ),
@@ -58,3 +63,41 @@ class XylophoneApp extends StatelessWidget {
     );
   }
 }
+
+class XylophoneKey extends StatelessWidget {
+  final Color buttonColor;
+  final int noteNumber;
+  final String noteName;
+
+  const XylophoneKey(
+      {Key? key,
+      required this.buttonColor,
+      required this.noteNumber,
+      required this.noteName})
+      : super(key: key);
+
+  void _playSound() {
+    final player = Audio.load('assets/note$noteNumber.wav');
+    player.play();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: buttonColor,
+        ),
+        onPressed: _playSound,
+        child: Text(
+          noteName,
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
